@@ -82,6 +82,206 @@
     .badge.green { border-color: var(--accent-green); color: var(--accent-green); }
     .badge.red { border-color: var(--accent-red); color: var(--accent-red); }
     .badge.cyan { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+    .badge.high {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      background: rgba(239, 68, 68, 0.2);
+      animation: alertPulse 1s infinite;
+    }
+    @keyframes alertPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+      50% { box-shadow: 0 0 10px 2px rgba(239, 68, 68, 0.4); }
+    }
+
+    /* Signal Box Styles */
+    .signal-panel {
+      background: var(--bg-dark);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+    .signal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .signal-badge-large {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .signal-badge-large.buy { background: var(--accent-green); color: #000; }
+    .signal-badge-large.sell { background: var(--accent-red); color: #fff; }
+    .signal-badge-large.neutral { background: var(--accent-gold); color: #000; }
+    .signal-score {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .signal-score.positive { color: var(--accent-green); }
+    .signal-score.negative { color: var(--accent-red); }
+    .signal-score.neutral { color: var(--accent-gold); }
+    .signal-list { margin-top: 8px; }
+    .signal-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+    }
+    .signal-item.buy { background: rgba(16, 185, 129, 0.15); border-left: 3px solid var(--accent-green); }
+    .signal-item.sell { background: rgba(239, 68, 68, 0.15); border-left: 3px solid var(--accent-red); }
+    .signal-item.neutral { background: rgba(251, 191, 36, 0.15); border-left: 3px solid var(--accent-gold); }
+
+    /* Signal Panel */
+    .signal-panel {
+      background: var(--bg-dark);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .signal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .signal-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .signal-badge-large {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .signal-badge-large.buy { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+    .signal-badge-large.sell { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
+    .signal-badge-large.neutral { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; }
+    .signal-score {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .signal-score.positive { color: var(--accent-green); }
+    .signal-score.negative { color: var(--accent-red); }
+    .signal-score.neutral { color: var(--accent-gold); }
+    .signal-list { margin-top: 12px; }
+    .signal-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      border-left: 3px solid;
+    }
+    .signal-item.buy { background: rgba(16, 185, 129, 0.15); border-left-color: var(--accent-green); }
+    .signal-item.sell { background: rgba(239, 68, 68, 0.15); border-left-color: var(--accent-red); }
+    .signal-item.neutral { background: rgba(251, 191, 36, 0.15); border-left-color: var(--accent-gold); }
+    .signal-indicator { font-weight: 600; color: var(--text-primary); }
+    .signal-reason { color: var(--text-secondary); font-size: 0.8rem; }
+    .signal-value { font-weight: 600; }
+    .signal-value.buy { color: var(--accent-green); }
+    .signal-value.sell { color: var(--accent-red); }
+    .signal-value.neutral { color: var(--accent-gold); }
+    .signal-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+    .signal-summary {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px;
+      background: var(--bg-card2);
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+    .signal-count {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+    .signal-count.buy { color: var(--accent-green); }
+    .signal-count.sell { color: var(--accent-red); }
+
+    /* Alert Notification Container */
+    .alert-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+    }
+    .alert-notification {
+      display: flex;
+      align-items: flex-start;
+      padding: 16px 20px;
+      border-radius: 12px;
+      animation: slideIn 0.4s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      border: 1px solid transparent;
+    }
+    .alert-notification.buy { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+    .alert-notification.sell { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
+    .alert-notification.high { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; }
+    .alert-notification.info { background: var(--bg-card); border: 1px solid var(--accent-cyan); color: var(--text-primary); }
+    .alert-icon { font-size: 1.5rem; margin-right: 14px; }
+    .alert-content { flex: 1; }
+    .alert-title { font-weight: bold; margin-bottom: 4px; font-size: 1rem; }
+    .alert-message { font-size: 0.85rem; opacity: 0.9; line-height: 1.4; }
+    .alert-close {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.7;
+      padding: 0 0 0 12px;
+    }
+    .alert-close:hover { opacity: 1; }
+    @keyframes slideIn {
+      from { transform: translateX(120%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(120%); opacity: 0; }
+    }
+    .alert-notification.removing {
+      animation: slideOut 0.3s ease forwards;
+    }
+
+    /* Alert Badge on Stock Card */
+    .alert-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent-red);
+      color: white;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      animation: alertPulse 1s infinite;
+    }
+    @keyframes alertPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+      50% { box-shadow: 0 0 12px 4px rgba(239, 68, 68, 0.3); }
+    }
 
     /* KPI Grid */
     .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
@@ -445,6 +645,9 @@
   </style>
 </head>
 <body>
+  <!-- Alert Notification Container -->
+  <div class="alert-container" id="alert-container"></div>
+
   <div class="container">
     <!-- Header -->
     <div class="header">
@@ -700,6 +903,116 @@
   </div>
 
   <script>
+    // ============ ALERT SYSTEM ============
+    const alertSoundEnabled = true;
+    let lastAlertTime = {};
+
+    // Play alert sound
+    function playAlertSound(type) {
+      if (!alertSoundEnabled) return;
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        if (type === 'buy') {
+          oscillator.frequency.value = 880;
+          oscillator.type = 'sine';
+        } else if (type === 'sell') {
+          oscillator.frequency.value = 440;
+          oscillator.type = 'square';
+        } else {
+          oscillator.frequency.value = 660;
+          oscillator.type = 'triangle';
+        }
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
+      } catch (e) {
+        console.warn('Audio alert failed:', e);
+      }
+    }
+
+    // Show alert notification
+    function showAlert(type, title, message, priority = 'MEDIUM') {
+      const container = document.getElementById('alert-container');
+      const alertId = 'alert-' + Date.now();
+
+      const iconMap = {
+        'buy': '📈',
+        'sell': '📉',
+        'high': '🚨',
+        'info': 'ℹ️'
+      };
+
+      const alertHtml = `
+        <div id="${alertId}" class="alert-notification ${type} ${priority.toLowerCase()}">
+          <span class="alert-icon">${iconMap[type] || 'ℹ️'}</span>
+          <div class="alert-content">
+            <div class="alert-title">${title}</div>
+            <div class="alert-message">${message}</div>
+          </div>
+          <button class="alert-close" onclick="dismissAlert('${alertId}')">×</button>
+        </div>
+      `;
+
+      container.insertAdjacentHTML('beforeend', alertHtml);
+
+      // Play sound
+      playAlertSound(type);
+
+      // Auto dismiss after 10 seconds for medium/low priority
+      if (priority !== 'HIGH') {
+        setTimeout(() => dismissAlert(alertId), 10000);
+      }
+    }
+
+    // Dismiss alert
+    function dismissAlert(alertId) {
+      const alertEl = document.getElementById(alertId);
+      if (alertEl) {
+        alertEl.classList.add('removing');
+        setTimeout(() => alertEl.remove(), 300);
+      }
+    }
+
+    // Check and show alerts based on signals
+    function checkAndShowAlerts(stock) {
+      if (!stock.signals || !stock.signals.alerts) return;
+
+      const ticker = stock.ticker;
+      const now = Date.now();
+      const cooldown = 300000; // 5 min cooldown between alerts for same ticker
+
+      stock.signals.alerts.forEach(alert => {
+        // Check cooldown
+        if (lastAlertTime[ticker + alert.type] &&
+            now - lastAlertTime[ticker + alert.type] < cooldown) {
+          return;
+        }
+
+        lastAlertTime[ticker + alert.type] = now;
+
+        if (alert.type === 'BUY_ALERT') {
+          showAlert('buy', `🚀 ${ticker} 買入信號`, alert.message, alert.priority);
+        } else if (alert.type === 'SELL_ALERT') {
+          showAlert('sell', `🛑 ${ticker} 賣出信號`, alert.message, alert.priority);
+        } else if (alert.type === 'EXTREME_BUY') {
+          showAlert('high', `💚 ${ticker} 嚴重超賣`, alert.message, 'HIGH');
+        } else if (alert.type === 'EXTREME_SELL') {
+          showAlert('high', `💔 ${ticker} 嚴重超買`, alert.message, 'HIGH');
+        } else if (alert.type === 'WATCH') {
+          showAlert('info', `👀 ${ticker} 觀望提醒`, alert.message, 'LOW');
+        }
+      });
+    }
+
     // ============ WATCHLISTS ============
     const WATCHLISTS = {
       mag7: ["NVDA", "AAPL", "MSFT", "GOOGL", "AMZN", "META", "TSLA", "SMCI", "AVGO"],
@@ -946,18 +1259,50 @@
       // Try Vercel backend first (no CORS issues!)
       if (VERCEL_API) {
         try {
-          const response = await fetch(`${VERCEL_API}/api/stock?symbol=${symbol}`, { timeout: 15000 });
+          const response = await fetch(`${VERCEL_API}/api/stock?symbol=${symbol}&range=3mo&indicators=true`, { timeout: 15000 });
           if (response.ok) {
             const data = await response.json();
             if (data.price && !data.error) {
               realStockCache[cacheKey] = { data: data, timestamp: Date.now() };
-              console.log(`✓ Real data for ${symbol}: $${data.price.toFixed(2)} (Vercel Backend)`);
+              console.log(`✓ Real data for ${symbol}: $${data.price.toFixed(2)} (${data.source || 'Vercel Backend'})`);
               return data;
             }
           }
         } catch (e) {
           console.warn(`Vercel API failed: ${e.message}`);
         }
+      }
+
+      // Fallback: Try Alpha Vantage (free, reliable)
+      try {
+        const avUrl = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=demo`;
+        const response = await fetch(avUrl, { timeout: 8000 });
+        if (response.ok) {
+          const avData = await response.json();
+          if (avData['Global Quote'] && avData['Global Quote']['05. price']) {
+            const q = avData['Global Quote'];
+            const stockData = {
+              price: parseFloat(q['05. price']),
+              prevClose: parseFloat(q['08. previous close']),
+              change: parseFloat(q['09. change']),
+              changePct: parseFloat(q['10. change percent']?.replace('%', '') || 0),
+              dayHigh: parseFloat(q['03. high']),
+              dayLow: parseFloat(q['04. low']),
+              volume: parseInt(q['06. volume'] || 0),
+              marketCap: 0,
+              yearHigh: parseFloat(q['52-week high'] || 0),
+              yearLow: parseFloat(q['52-week low'] || 0),
+              history: [],
+              timestamp: Date.now(),
+              source: 'alpha_vantage'
+            };
+            realStockCache[cacheKey] = { data: stockData, timestamp: Date.now() };
+            console.log(`✓ Real data for ${symbol}: $${stockData.price.toFixed(2)} (Alpha Vantage)`);
+            return stockData;
+          }
+        }
+      } catch (e) {
+        console.warn(`Alpha Vantage failed: ${e.message}`);
       }
 
       // Fallback: Try Financial Modeling Prep (no API key needed, CORS-friendly)
@@ -980,7 +1325,8 @@
               yearHigh: quote.yearHigh || quote.price * 1.5,
               yearLow: quote.yearLow || quote.price * 0.5,
               history: [],
-              timestamp: Date.now()
+              timestamp: Date.now(),
+              source: 'fmp'
             };
             realStockCache[cacheKey] = { data: stockData, timestamp: Date.now() };
             console.log(`✓ Real data for ${symbol}: $${stockData.price.toFixed(2)} (FMP)`);
@@ -1031,8 +1377,8 @@
 
       const atr = price * (0.02 + Math.random() * 0.03);
 
-      // Technical indicators
-      const rsi = 25 + Math.random() * 60;
+      // Technical indicators - use real data from API if available
+      const rsi = realData?.indicators?.rsi || (25 + Math.random() * 60);
       const kdj_j = 10 + Math.random() * 90;
       const cmf = (Math.random() - 0.5) * 0.6;
       const willr = -100 + Math.random() * 100;
@@ -1161,7 +1507,13 @@
         news,
         copilot_msg: copilotMsg,
         market_cap: base.cap,
-        volatility: (atr / price) * 100
+        volatility: (atr / price) * 100,
+        // Store indicators from API response
+        indicators: realData?.indicators || null,
+        // Store signals from API response (buy/sell analysis)
+        signals: realData?.signals || null,
+        source: realData?.source || 'simulated',
+        history: realData?.history || []
       };
     }
 
@@ -1197,6 +1549,13 @@
 
       renderResults(results);
       renderTable(results);
+
+      // Show alerts for stocks with significant signals
+      results.forEach(stock => {
+        if (stock.signals && stock.signals.alerts && stock.signals.alerts.length > 0) {
+          checkAndShowAlerts(stock);
+        }
+      });
 
       document.getElementById('loading').style.display = 'none';
 
@@ -1253,6 +1612,26 @@
                 <div class="indicator-value text-cyan">${stock.ai_prob.toFixed(0)}%</div>
               </div>
             </div>
+            ${stock.indicators ? `
+            <div class="indicators-grid" style="margin-top: 8px;">
+              <div class="indicator">
+                <div class="indicator-label">MA20</div>
+                <div class="indicator-value">$${stock.indicators.ma20?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">MA50</div>
+                <div class="indicator-value">$${stock.indicators.ma50?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">MACD</div>
+                <div class="indicator-value" style="color: ${stock.indicators.macd?.histogram > 0 ? 'var(--accent-green)' : 'var(--accent-red)'}">${stock.indicators.macd?.value?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="indicator">
+                <div class="indicator-label">ATR</div>
+                <div class="indicator-value">$${stock.indicators.atr?.toFixed(2) || 'N/A'}</div>
+              </div>
+            </div>
+            ` : ''}
             <div class="copilot-box">
               <div class="copilot-header">🤖 GS Copilot</div>
               <div style="white-space: pre-line; color: var(--text-secondary);">${stock.copilot_msg}</div>
@@ -1345,6 +1724,77 @@
               <div class="kpi-value">${stock.adx.toFixed(1)}</div>
             </div>
           </div>
+          ${stock.indicators ? `
+          <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <div class="card-title" style="margin-bottom: 12px;">📊 API 計算技術指標 (真實數據)</div>
+            <div class="kpi-grid">
+              <div class="kpi-box">
+                <div class="kpi-label">MA20</div>
+                <div class="kpi-value cyan">$${stock.indicators.ma20?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">MA50</div>
+                <div class="kpi-value cyan">$${stock.indicators.ma50?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">MA200</div>
+                <div class="kpi-value cyan">$${stock.indicators.ma200?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">MACD 線</div>
+                <div class="kpi-value" style="color: ${stock.indicators.macd?.histogram > 0 ? 'var(--accent-green)' : 'var(--accent-red)'}">${stock.indicators.macd?.value?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">MACD 信號</div>
+                <div class="kpi-value">${stock.indicators.macd?.signal?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">MACD 柱狀</div>
+                <div class="kpi-value" style="color: ${stock.indicators.macd?.histogram > 0 ? 'var(--accent-green)' : 'var(--accent-red)'}">${stock.indicators.macd?.histogram?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">布林上軌</div>
+                <div class="kpi-value">$${stock.indicators.bollinger?.upper?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">布林中軌</div>
+                <div class="kpi-value">$${stock.indicators.bollinger?.middle?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">布林下軌</div>
+                <div class="kpi-value">$${stock.indicators.bollinger?.lower?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">ATR (14日)</div>
+                <div class="kpi-value">$${stock.indicators.atr?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">隨機 K</div>
+                <div class="kpi-value">${stock.indicators.stochastic?.k?.toFixed(1) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">支撐位</div>
+                <div class="kpi-value green">$${stock.indicators.supportResistance?.support?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">壓力位</div>
+                <div class="kpi-value red">$${stock.indicators.supportResistance?.resistance?.toFixed(2) || 'N/A'}</div>
+              </div>
+              <div class="kpi-box">
+                <div class="kpi-label">樞軸點</div>
+                <div class="kpi-value gold">$${stock.indicators.supportResistance?.pivot?.toFixed(2) || 'N/A'}</div>
+              </div>
+            </div>
+            <div style="margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap;">
+              <span class="badge ${stock.indicators.macd?.histogram > 0 ? 'green' : 'red'}" style="padding: 8px 16px;">
+                MACD: ${stock.indicators.macd?.histogram > 0 ? '📈 多頭' : '📉 空頭'}
+              </span>
+              <span class="badge cyan" style="padding: 8px 16px;">
+                數據來源: ${stock.source || 'yahoo'}
+              </span>
+            </div>
+          </div>
+          ` : ''}
         </div>
 
         <div class="chart-container">
@@ -1441,11 +1891,76 @@
 
         <div class="card">
           <div class="card-title">🎯 信號與評分</div>
+
+          ${stock.signals ? `
+          <!-- Signal Panel from API -->
+          <div class="signal-panel">
+            <div class="signal-header">
+              <div class="signal-title">
+                ${stock.signals.overall === 'BUY' ? '📈 買入信號' : stock.signals.overall === 'SELL' ? '📉 賣出信號' : '⚖️ 中性信號'}
+              </div>
+              <div class="signal-badge-large ${stock.signals.overallScore >= 30 ? 'buy' : stock.signals.overallScore <= -30 ? 'sell' : 'neutral'}">
+                ${stock.signals.overallScore >= 0 ? '+' : ''}${stock.signals.overallScore}
+              </div>
+            </div>
+
+            <div class="signal-list">
+              ${stock.signals.buySignals && stock.signals.buySignals.length > 0 ? stock.signals.buySignals.map(sig => `
+                <div class="signal-item buy">
+                  <div>
+                    <div class="signal-indicator">${sig.indicator}</div>
+                    <div class="signal-reason">${sig.reason}</div>
+                  </div>
+                  <div class="signal-value buy">+${Math.abs(sig.value) > 1 ? Math.round(sig.value) : sig.value.toFixed(2)}</div>
+                </div>
+              `).join('') : ''}
+
+              ${stock.signals.sellSignals && stock.signals.sellSignals.length > 0 ? stock.signals.sellSignals.map(sig => `
+                <div class="signal-item sell">
+                  <div>
+                    <div class="signal-indicator">${sig.indicator}</div>
+                    <div class="signal-reason">${sig.reason}</div>
+                  </div>
+                  <div class="signal-value sell">${sig.value > 1 ? Math.round(sig.value) : sig.value.toFixed(2)}</div>
+                </div>
+              `).join('') : ''}
+
+              ${stock.signals.neutralSignals && stock.signals.neutralSignals.length > 0 ? stock.signals.neutralSignals.map(sig => `
+                <div class="signal-item neutral">
+                  <div>
+                    <div class="signal-indicator">${sig.indicator}</div>
+                    <div class="signal-reason">${sig.reason}</div>
+                  </div>
+                  <div class="signal-value neutral">${sig.value?.toFixed(1) || '~'}</div>
+                </div>
+              `).join('') : ''}
+            </div>
+
+            <div class="signal-divider"></div>
+
+            <div class="signal-summary">
+              <div class="signal-count buy">
+                <span>📈 買入</span>
+                <strong>${stock.signals.buySignals?.length || 0}</strong>
+              </div>
+              <div class="signal-count sell">
+                <span>📉 賣出</span>
+                <strong>${stock.signals.sellSignals?.length || 0}</strong>
+              </div>
+              <div style="font-size: 0.9rem; color: var(--text-secondary);">
+                <span>⚖️ 中性</span>
+                <strong>${stock.signals.neutralSignals?.length || 0}</strong>
+              </div>
+            </div>
+          </div>
+          ` : `
+          <!-- Fallback to simple signal display -->
           <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;">
             <span class="signal-badge ${stock.signalClass}" style="font-size: 1rem; padding: 8px 16px;">${stock.signal}</span>
             <span style="font-size: 1rem;">${stock.bagger_label}</span>
             <span class="badge ${stock.fin_risk === '高風險' ? 'red' : 'green'}" style="font-size: 0.9rem;">風險: ${stock.fin_risk}</span>
           </div>
+          `}
 
           <div class="ai-gauge">
             <div class="gauge-circle">
@@ -18802,6 +19317,1061 @@ document.addEventListener('DOMContentLoaded', initFloatingBall);
 })();
 
 </script>
+
+<script>
+/**
+ * Iframe 元素高亮注入脚本
+ * 需要在目标网站中引入此脚本来支持跨域 iframe 高亮功能
+ *
+ * 使用方法：
+ * 1. 将此脚本添加到目标网站的 HTML 中
+ * 2. 或通过浏览器扩展、用户脚本等方式注入
+ */
+
+(function () {
+  "use strict";
+
+  // 检查是否在 iframe 中
+  if (window.self === window.top) {
+    return; // 不在 iframe 中，不执行
+  }
+
+  // 检查是否已经初始化过
+  if (window.__iframeHighlightInitialized) {
+    return;
+  }
+  window.__iframeHighlightInitialized = true;
+  console.log("Iframe 高亮脚本已加载");
+
+  // 创建高亮覆盖层
+  var overlay = document.createElement("div");
+  overlay.id = "iframe-highlight-overlay";
+  overlay.style.cssText = "\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    pointer-events: none;\n    z-index: 999999;\n    overflow: hidden;\n  ";
+
+  // 创建悬停高亮框（虚线边框）
+  var highlightBox = document.createElement("div");
+  highlightBox.id = "iframe-highlight-box";
+  highlightBox.style.cssText = "\n    position: absolute;\n    border: 2px dashed #007AFF;\n    background: rgba(0, 122, 255, 0.08);\n    pointer-events: none;\n    display: none;\n    transition: all 0.1s ease;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);\n    border-radius: 2px;\n  ";
+
+  // 创建选中节点的常驻高亮框（实线边框）
+  var selectedBox = document.createElement("div");
+  selectedBox.id = "iframe-selected-box";
+  selectedBox.style.cssText = "\n    position: absolute;\n    border: 2px solid #007AFF;\n    pointer-events: none;\n    display: none;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 107, 53, 0.4);\n    border-radius: 2px;\n    z-index: 1000000;\n  ";
+
+  // 创建悬停标签显示
+  var tagLabel = document.createElement("div");
+  tagLabel.id = "iframe-tag-label";
+  tagLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 2px 6px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 2px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000001;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    font-weight: 500;\n  ";
+
+  // 创建选中节点标签
+  var selectedLabel = document.createElement("div");
+  selectedLabel.id = "iframe-selected-label";
+  selectedLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 3px 8px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 3px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000002;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);\n    font-weight: 600;\n  ";
+  overlay.appendChild(highlightBox);
+  overlay.appendChild(selectedBox);
+  overlay.appendChild(tagLabel);
+  overlay.appendChild(selectedLabel);
+  document.body.appendChild(overlay);
+
+  // 存储当前选中的元素
+  var selectedElement = null;
+  var highlightEnabled = false;
+
+  // 更新选中元素的高亮显示
+  function updateSelectedHighlight(element) {
+    console.log("updateSelectedHighlight called with:", element);
+    if (!element) {
+      selectedBox.style.display = "none";
+      selectedLabel.style.display = "none";
+      selectedElement = null;
+      console.log("Cleared selected highlight");
+      return;
+    }
+    selectedElement = element;
+    var rect = element.getBoundingClientRect();
+    console.log("Selected element rect:", rect);
+
+    // 更新选中高亮框位置
+    selectedBox.style.display = "block";
+    selectedBox.style.left = "".concat(rect.left - 2, "px");
+    selectedBox.style.top = "".concat(rect.top - 2, "px");
+    selectedBox.style.width = "".concat(rect.width + 4, "px");
+    selectedBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新选中标签位置和内容
+    selectedLabel.style.display = "block";
+    selectedLabel.textContent = "\u2713 <".concat(element.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 28;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 5) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    var labelWidth = selectedLabel.offsetWidth || 100; // 预估宽度
+    if (labelLeft + labelWidth > window.innerWidth - 10) {
+      labelLeft = window.innerWidth - labelWidth - 10;
+    }
+    selectedLabel.style.left = "".concat(Math.max(5, labelLeft), "px");
+    selectedLabel.style.top = "".concat(labelTop, "px");
+    console.log("Selected highlight positioned at:", {
+      left: selectedBox.style.left,
+      top: selectedBox.style.top,
+      width: selectedBox.style.width,
+      height: selectedBox.style.height
+    });
+  }
+  function getElementSelector(element) {
+    if (!(element instanceof Element)) throw new Error('Argument must be a DOM element');
+    var segments = [];
+    var current = element;
+    while (current !== document.documentElement) {
+      var selector = '';
+      // 优先检查唯一ID
+      if (current.id && document.querySelectorAll("#".concat(current.id)).length === 1) {
+        segments.unshift("#".concat(current.id));
+        break; // ID唯一，无需继续向上
+      }
+
+      // 生成类名选择器（取第一个有效类名）
+      var classes = Array.from(current.classList).filter(function (c) {
+        return !c.startsWith('js-');
+      });
+      var className = classes.length > 0 ? ".".concat(classes[0]) : '';
+
+      // 生成位置索引（nth-child）
+      var tag = current.tagName.toLowerCase();
+      if (!className) {
+        var siblings = Array.from(current.parentNode.children);
+        var index = siblings.findIndex(function (el) {
+          return el === current;
+        }) + 1;
+        selector = "".concat(tag, ":nth-child(").concat(index, ")");
+      } else {
+        selector = className;
+      }
+      segments.unshift(selector);
+      current = current.parentElement;
+    }
+
+    // 处理根元素
+    if (current === document.documentElement) {
+      segments.unshift('html');
+    }
+    return segments.join(' > ');
+  }
+
+  // 获取元素文本内容
+  function getElementText(element) {
+    var _element$textContent;
+    if (element.tagName === "INPUT") {
+      return element.value || element.placeholder || "";
+    }
+    if (element.tagName === "TEXTAREA") {
+      return element.value || element.placeholder || "";
+    }
+    var text = ((_element$textContent = element.textContent) === null || _element$textContent === void 0 ? void 0 : _element$textContent.trim()) || "";
+    return text.length > 50 ? text.substring(0, 50) + "..." : text;
+  }
+
+  // 获取元素属性信息
+  function getElementAttributes(element) {
+    var attrs = {};
+    for (var i = 0; i < element.attributes.length; i++) {
+      var attr = element.attributes[i];
+      attrs[attr.name] = attr.value;
+    }
+    return attrs;
+  }
+
+  // 鼠标悬停事件处理
+  function handleMouseOver(e) {
+    if (!highlightEnabled) return;
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免高亮 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 如果是已选中的元素，不显示悬停高亮
+    if (target === selectedElement) {
+      highlightBox.style.display = "none";
+      tagLabel.style.display = "none";
+      return;
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+
+    // 更新悬停高亮框位置
+    highlightBox.style.display = "block";
+    highlightBox.style.left = "".concat(rect.left - 2, "px");
+    highlightBox.style.top = "".concat(rect.top - 2, "px");
+    highlightBox.style.width = "".concat(rect.width + 4, "px");
+    highlightBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新标签位置和内容
+    tagLabel.style.display = "block";
+    tagLabel.textContent = "<".concat(target.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 22;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 0) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    if (labelLeft + tagLabel.offsetWidth > window.innerWidth) {
+      labelLeft = window.innerWidth - tagLabel.offsetWidth - 5;
+    }
+    tagLabel.style.left = "".concat(Math.max(0, labelLeft), "px");
+    tagLabel.style.top = "".concat(labelTop, "px");
+
+    // 发送消息到父窗口
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 鼠标离开事件处理
+  function handleMouseOut(e) {
+    if (!highlightEnabled) return;
+    var relatedTarget = e.relatedTarget;
+
+    // 如果鼠标移动到高亮相关元素上，不隐藏高亮
+    if (relatedTarget && (relatedTarget === highlightBox || relatedTarget === tagLabel || relatedTarget === overlay || relatedTarget === selectedBox || relatedTarget === selectedLabel)) {
+      return;
+    }
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: null,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 点击事件处理
+  function handleClick(e) {
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免处理 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 检查是否是交互元素，这些元素需要保留默认行为
+    var isInteractiveElement = ['input', 'textarea', 'select', 'button', 'a'].includes(target.tagName.toLowerCase());
+
+    // 如果高亮功能启用，对于非交互元素阻止默认行为和事件传播
+    if (highlightEnabled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+    console.log("Element clicked:", {
+      tagName: target.tagName,
+      selector: selector,
+      rect: rect
+    });
+
+    // 立即更新选中高亮
+    updateSelectedHighlight(target);
+
+    // 隐藏悬停高亮，因为现在是选中状态
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-click",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 监听来自父窗口的消息
+  function handleParentMessage(event) {
+    console.log("Received message from parent:", event.data);
+    if (event.data.type === "iframe-highlight-toggle") {
+      var enabled = event.data.enabled;
+      console.log("Highlight toggle:", enabled);
+      if (enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "enable-iframe-highlight") {
+      console.log("Enable iframe highlight");
+      enableHighlight();
+    } else if (event.data.type === "disable-iframe-highlight") {
+      console.log("Disable iframe highlight");
+      disableHighlight();
+    } else if (event.data.type === "toggle-iframe-highlight") {
+      var _enabled = event.data.enabled !== undefined ? event.data.enabled : !highlightEnabled;
+      console.log("Toggle iframe highlight to:", _enabled);
+      if (_enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "update-selected-element") {
+      var selector = event.data.selector;
+      console.log("Update selected element with selector:", selector);
+      if (selector) {
+        try {
+          var element = document.querySelector(selector);
+          console.log("Found element by selector:", element);
+          updateSelectedHighlight(element);
+        } catch (error) {
+          console.warn("Failed to select element:", error);
+          updateSelectedHighlight(null);
+        }
+      } else {
+        updateSelectedHighlight(null);
+      }
+    } else if (event.data.type === "clear-selected-element") {
+      console.log("Clear selected element");
+      updateSelectedHighlight(null);
+    }
+  }
+
+  // 启用高亮功能
+  function enableHighlight() {
+    console.log("Enabling highlight");
+    document.addEventListener("mouseover", handleMouseOver, true);
+    document.addEventListener("mouseout", handleMouseOut, true);
+    document.addEventListener("click", handleClick, true);
+    highlightEnabled = true;
+    overlay.style.display = "block";
+  }
+
+  // 禁用高亮功能
+  function disableHighlight() {
+    console.log("Disabling highlight");
+    highlightEnabled = false;
+    // 保持事件监听器，但通过 highlightEnabled 变量控制行为
+    // 这样可以保留选中状态的显示
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    // 不隐藏 selectedBox 和 selectedLabel，保留选中状态
+  }
+
+  // 完全禁用高亮功能（移除所有监听器）
+  function fullyDisableHighlight() {
+    console.log("Fully disabling highlight");
+    highlightEnabled = false;
+    document.removeEventListener("mouseover", handleMouseOver, true);
+    document.removeEventListener("mouseout", handleMouseOut, true);
+    document.removeEventListener("click", handleClick, true);
+    overlay.style.display = "none";
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    selectedBox.style.display = "none";
+    selectedLabel.style.display = "none";
+  }
+
+  // 添加事件监听
+  enableHighlight();
+  window.addEventListener("message", handleParentMessage);
+
+  // 暴露全局函数供外部调用
+  window.__iframeHighlightControl = {
+    enable: enableHighlight,
+    disable: disableHighlight,
+    fullyDisable: fullyDisableHighlight,
+    isEnabled: function isEnabled() {
+      return highlightEnabled;
+    },
+    getSelectedElement: function getSelectedElement() {
+      return selectedElement;
+    },
+    updateSelected: updateSelectedHighlight,
+    // 通过消息发送开关控制
+    sendToggleMessage: function sendToggleMessage(enabled) {
+      window.parent.postMessage({
+        type: 'iframe-highlight-status',
+        enabled: enabled || highlightEnabled,
+        source: 'iframe-highlight-injector'
+      }, '*');
+    }
+  };
+
+  // 通知父窗口脚本已加载
+  try {
+    window.parent.postMessage({
+      type: "iframe-highlight-ready",
+      data: {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: Date.now()
+      },
+      source: "iframe-highlight-injector"
+    }, "*");
+  } catch (error) {
+    console.warn("无法发送就绪消息到父窗口:", error);
+  }
+
+  // 清理函数
+  window.__iframeHighlightCleanup = function () {
+    fullyDisableHighlight();
+    window.removeEventListener("message", handleParentMessage);
+    if (overlay.parentElement) {
+      overlay.parentElement.removeChild(overlay);
+    }
+    delete window.__iframeHighlightInitialized;
+    delete window.__iframeHighlightCleanup;
+  };
+})();
+
+</script>
+
+<script>
+/**
+ * Iframe 元素高亮注入脚本
+ * 需要在目标网站中引入此脚本来支持跨域 iframe 高亮功能
+ *
+ * 使用方法：
+ * 1. 将此脚本添加到目标网站的 HTML 中
+ * 2. 或通过浏览器扩展、用户脚本等方式注入
+ */
+
+(function () {
+  "use strict";
+
+  // 检查是否在 iframe 中
+  if (window.self === window.top) {
+    return; // 不在 iframe 中，不执行
+  }
+
+  // 检查是否已经初始化过
+  if (window.__iframeHighlightInitialized) {
+    return;
+  }
+  window.__iframeHighlightInitialized = true;
+  console.log("Iframe 高亮脚本已加载");
+
+  // 创建高亮覆盖层
+  var overlay = document.createElement("div");
+  overlay.id = "iframe-highlight-overlay";
+  overlay.style.cssText = "\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    pointer-events: none;\n    z-index: 999999;\n    overflow: hidden;\n  ";
+
+  // 创建悬停高亮框（虚线边框）
+  var highlightBox = document.createElement("div");
+  highlightBox.id = "iframe-highlight-box";
+  highlightBox.style.cssText = "\n    position: absolute;\n    border: 2px dashed #007AFF;\n    background: rgba(0, 122, 255, 0.08);\n    pointer-events: none;\n    display: none;\n    transition: all 0.1s ease;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);\n    border-radius: 2px;\n  ";
+
+  // 创建选中节点的常驻高亮框（实线边框）
+  var selectedBox = document.createElement("div");
+  selectedBox.id = "iframe-selected-box";
+  selectedBox.style.cssText = "\n    position: absolute;\n    border: 2px solid #007AFF;\n    pointer-events: none;\n    display: none;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 107, 53, 0.4);\n    border-radius: 2px;\n    z-index: 1000000;\n  ";
+
+  // 创建悬停标签显示
+  var tagLabel = document.createElement("div");
+  tagLabel.id = "iframe-tag-label";
+  tagLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 2px 6px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 2px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000001;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    font-weight: 500;\n  ";
+
+  // 创建选中节点标签
+  var selectedLabel = document.createElement("div");
+  selectedLabel.id = "iframe-selected-label";
+  selectedLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 3px 8px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 3px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000002;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);\n    font-weight: 600;\n  ";
+  overlay.appendChild(highlightBox);
+  overlay.appendChild(selectedBox);
+  overlay.appendChild(tagLabel);
+  overlay.appendChild(selectedLabel);
+  document.body.appendChild(overlay);
+
+  // 存储当前选中的元素
+  var selectedElement = null;
+  var highlightEnabled = false;
+
+  // 更新选中元素的高亮显示
+  function updateSelectedHighlight(element) {
+    console.log("updateSelectedHighlight called with:", element);
+    if (!element) {
+      selectedBox.style.display = "none";
+      selectedLabel.style.display = "none";
+      selectedElement = null;
+      console.log("Cleared selected highlight");
+      return;
+    }
+    selectedElement = element;
+    var rect = element.getBoundingClientRect();
+    console.log("Selected element rect:", rect);
+
+    // 更新选中高亮框位置
+    selectedBox.style.display = "block";
+    selectedBox.style.left = "".concat(rect.left - 2, "px");
+    selectedBox.style.top = "".concat(rect.top - 2, "px");
+    selectedBox.style.width = "".concat(rect.width + 4, "px");
+    selectedBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新选中标签位置和内容
+    selectedLabel.style.display = "block";
+    selectedLabel.textContent = "\u2713 <".concat(element.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 28;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 5) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    var labelWidth = selectedLabel.offsetWidth || 100; // 预估宽度
+    if (labelLeft + labelWidth > window.innerWidth - 10) {
+      labelLeft = window.innerWidth - labelWidth - 10;
+    }
+    selectedLabel.style.left = "".concat(Math.max(5, labelLeft), "px");
+    selectedLabel.style.top = "".concat(labelTop, "px");
+    console.log("Selected highlight positioned at:", {
+      left: selectedBox.style.left,
+      top: selectedBox.style.top,
+      width: selectedBox.style.width,
+      height: selectedBox.style.height
+    });
+  }
+  function getElementSelector(element) {
+    if (!(element instanceof Element)) throw new Error('Argument must be a DOM element');
+    var segments = [];
+    var current = element;
+    while (current !== document.documentElement) {
+      var selector = '';
+      // 优先检查唯一ID
+      if (current.id && document.querySelectorAll("#".concat(current.id)).length === 1) {
+        segments.unshift("#".concat(current.id));
+        break; // ID唯一，无需继续向上
+      }
+
+      // 生成类名选择器（取第一个有效类名）
+      var classes = Array.from(current.classList).filter(function (c) {
+        return !c.startsWith('js-');
+      });
+      var className = classes.length > 0 ? ".".concat(classes[0]) : '';
+
+      // 生成位置索引（nth-child）
+      var tag = current.tagName.toLowerCase();
+      if (!className) {
+        var siblings = Array.from(current.parentNode.children);
+        var index = siblings.findIndex(function (el) {
+          return el === current;
+        }) + 1;
+        selector = "".concat(tag, ":nth-child(").concat(index, ")");
+      } else {
+        selector = className;
+      }
+      segments.unshift(selector);
+      current = current.parentElement;
+    }
+
+    // 处理根元素
+    if (current === document.documentElement) {
+      segments.unshift('html');
+    }
+    return segments.join(' > ');
+  }
+
+  // 获取元素文本内容
+  function getElementText(element) {
+    var _element$textContent;
+    if (element.tagName === "INPUT") {
+      return element.value || element.placeholder || "";
+    }
+    if (element.tagName === "TEXTAREA") {
+      return element.value || element.placeholder || "";
+    }
+    var text = ((_element$textContent = element.textContent) === null || _element$textContent === void 0 ? void 0 : _element$textContent.trim()) || "";
+    return text.length > 50 ? text.substring(0, 50) + "..." : text;
+  }
+
+  // 获取元素属性信息
+  function getElementAttributes(element) {
+    var attrs = {};
+    for (var i = 0; i < element.attributes.length; i++) {
+      var attr = element.attributes[i];
+      attrs[attr.name] = attr.value;
+    }
+    return attrs;
+  }
+
+  // 鼠标悬停事件处理
+  function handleMouseOver(e) {
+    if (!highlightEnabled) return;
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免高亮 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 如果是已选中的元素，不显示悬停高亮
+    if (target === selectedElement) {
+      highlightBox.style.display = "none";
+      tagLabel.style.display = "none";
+      return;
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+
+    // 更新悬停高亮框位置
+    highlightBox.style.display = "block";
+    highlightBox.style.left = "".concat(rect.left - 2, "px");
+    highlightBox.style.top = "".concat(rect.top - 2, "px");
+    highlightBox.style.width = "".concat(rect.width + 4, "px");
+    highlightBox.style.height = "".concat(rect.height + 4, "px");
+
+    // 更新标签位置和内容
+    tagLabel.style.display = "block";
+    tagLabel.textContent = "<".concat(target.tagName.toLowerCase(), ">");
+
+    // 计算标签位置，确保不超出视窗
+    var labelTop = rect.top - 22;
+    var labelLeft = rect.left;
+
+    // 如果标签会超出顶部，显示在元素下方
+    if (labelTop < 0) {
+      labelTop = rect.bottom + 5;
+    }
+
+    // 如果标签会超出右侧，向左调整
+    if (labelLeft + tagLabel.offsetWidth > window.innerWidth) {
+      labelLeft = window.innerWidth - tagLabel.offsetWidth - 5;
+    }
+    tagLabel.style.left = "".concat(Math.max(0, labelLeft), "px");
+    tagLabel.style.top = "".concat(labelTop, "px");
+
+    // 发送消息到父窗口
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 鼠标离开事件处理
+  function handleMouseOut(e) {
+    if (!highlightEnabled) return;
+    var relatedTarget = e.relatedTarget;
+
+    // 如果鼠标移动到高亮相关元素上，不隐藏高亮
+    if (relatedTarget && (relatedTarget === highlightBox || relatedTarget === tagLabel || relatedTarget === overlay || relatedTarget === selectedBox || relatedTarget === selectedLabel)) {
+      return;
+    }
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-hover",
+        data: null,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 点击事件处理
+  function handleClick(e) {
+    var target = e.target;
+    if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+      return;
+    }
+
+    // 避免处理 html 和 body 元素
+    if (target === document.documentElement || target === document.body) {
+      return;
+    }
+
+    // 检查是否是交互元素，这些元素需要保留默认行为
+    var isInteractiveElement = ['input', 'textarea', 'select', 'button', 'a'].includes(target.tagName.toLowerCase());
+
+    // 如果高亮功能启用，对于非交互元素阻止默认行为和事件传播
+    if (highlightEnabled) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var rect = target.getBoundingClientRect();
+    var selector = getElementSelector(target);
+    var text = getElementText(target);
+    var attributes = getElementAttributes(target);
+    console.log("Element clicked:", {
+      tagName: target.tagName,
+      selector: selector,
+      rect: rect
+    });
+
+    // 立即更新选中高亮
+    updateSelectedHighlight(target);
+
+    // 隐藏悬停高亮，因为现在是选中状态
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    var elementInfo = {
+      tagName: target.tagName.toLowerCase(),
+      rect: {
+        left: rect.left,
+        top: rect.top,
+        right: rect.right,
+        bottom: rect.bottom,
+        width: rect.width,
+        height: rect.height,
+        x: rect.x,
+        y: rect.y
+      },
+      selector: selector,
+      text: text,
+      attributes: attributes,
+      url: window.location.href,
+      path: window.location.pathname,
+      timestamp: Date.now()
+    };
+    try {
+      window.parent.postMessage({
+        type: "iframe-element-click",
+        data: elementInfo,
+        source: "iframe-highlight-injector"
+      }, "*");
+    } catch (error) {
+      console.warn("无法发送消息到父窗口:", error);
+    }
+  }
+
+  // 监听来自父窗口的消息
+  function handleParentMessage(event) {
+    console.log("Received message from parent:", event.data);
+    if (event.data.type === "iframe-highlight-toggle") {
+      var enabled = event.data.enabled;
+      console.log("Highlight toggle:", enabled);
+      if (enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "enable-iframe-highlight") {
+      console.log("Enable iframe highlight");
+      enableHighlight();
+    } else if (event.data.type === "disable-iframe-highlight") {
+      console.log("Disable iframe highlight");
+      disableHighlight();
+    } else if (event.data.type === "toggle-iframe-highlight") {
+      var _enabled = event.data.enabled !== undefined ? event.data.enabled : !highlightEnabled;
+      console.log("Toggle iframe highlight to:", _enabled);
+      if (_enabled) {
+        enableHighlight();
+      } else {
+        disableHighlight();
+      }
+    } else if (event.data.type === "update-selected-element") {
+      var selector = event.data.selector;
+      console.log("Update selected element with selector:", selector);
+      if (selector) {
+        try {
+          var element = document.querySelector(selector);
+          console.log("Found element by selector:", element);
+          updateSelectedHighlight(element);
+        } catch (error) {
+          console.warn("Failed to select element:", error);
+          updateSelectedHighlight(null);
+        }
+      } else {
+        updateSelectedHighlight(null);
+      }
+    } else if (event.data.type === "clear-selected-element") {
+      console.log("Clear selected element");
+      updateSelectedHighlight(null);
+    }
+  }
+
+  // 启用高亮功能
+  function enableHighlight() {
+    console.log("Enabling highlight");
+    document.addEventListener("mouseover", handleMouseOver, true);
+    document.addEventListener("mouseout", handleMouseOut, true);
+    document.addEventListener("click", handleClick, true);
+    highlightEnabled = true;
+    overlay.style.display = "block";
+  }
+
+  // 禁用高亮功能
+  function disableHighlight() {
+    console.log("Disabling highlight");
+    highlightEnabled = false;
+    // 保持事件监听器，但通过 highlightEnabled 变量控制行为
+    // 这样可以保留选中状态的显示
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    // 不隐藏 selectedBox 和 selectedLabel，保留选中状态
+  }
+
+  // 完全禁用高亮功能（移除所有监听器）
+  function fullyDisableHighlight() {
+    console.log("Fully disabling highlight");
+    highlightEnabled = false;
+    document.removeEventListener("mouseover", handleMouseOver, true);
+    document.removeEventListener("mouseout", handleMouseOut, true);
+    document.removeEventListener("click", handleClick, true);
+    overlay.style.display = "none";
+    highlightBox.style.display = "none";
+    tagLabel.style.display = "none";
+    selectedBox.style.display = "none";
+    selectedLabel.style.display = "none";
+  }
+
+  // 添加事件监听
+  enableHighlight();
+  window.addEventListener("message", handleParentMessage);
+
+  // 暴露全局函数供外部调用
+  window.__iframeHighlightControl = {
+    enable: enableHighlight,
+    disable: disableHighlight,
+    fullyDisable: fullyDisableHighlight,
+    isEnabled: function isEnabled() {
+      return highlightEnabled;
+    },
+    getSelectedElement: function getSelectedElement() {
+      return selectedElement;
+    },
+    updateSelected: updateSelectedHighlight,
+    // 通过消息发送开关控制
+    sendToggleMessage: function sendToggleMessage(enabled) {
+      window.parent.postMessage({
+        type: 'iframe-highlight-status',
+        enabled: enabled || highlightEnabled,
+        source: 'iframe-highlight-injector'
+      }, '*');
+    }
+  };
+
+  // 通知父窗口脚本已加载
+  try {
+    window.parent.postMessage({
+      type: "iframe-highlight-ready",
+      data: {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: Date.now()
+      },
+      source: "iframe-highlight-injector"
+    }, "*");
+  } catch (error) {
+    console.warn("无法发送就绪消息到父窗口:", error);
+  }
+
+  // 清理函数
+  window.__iframeHighlightCleanup = function () {
+    fullyDisableHighlight();
+    window.removeEventListener("message", handleParentMessage);
+    if (overlay.parentElement) {
+      overlay.parentElement.removeChild(overlay);
+    }
+    delete window.__iframeHighlightInitialized;
+    delete window.__iframeHighlightCleanup;
+  };
+})();
+
+</script>
+
+    <!-- Alert Container for Notifications -->
+    <div class="alert-container" id="alert-container"></div>
+
+    <!-- Audio for Alerts -->
+    <audio id="alert-sound-buy" preload="auto">
+      <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdH2IkI2Lf3Z7gISIjYuGdXaAgoiNegI1dQEXATlX/" type="audio/wav">
+    </audio>
+    <audio id="alert-sound-sell" preload="auto">
+      <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdH2IkI2Lf3Z7gISIjYuGdXaAgoiNegI1dQEXATlX/" type="audio/wav">
+    </audio>
+
+    <script>
+      // ============ ALERT SYSTEM ============
+      let enableSoundAlerts = true;
+      let alertHistory = [];
+
+      function playAlertSound(type) {
+        if (!enableSoundAlerts) return;
+        try {
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const oscillator = audioCtx.createOscillator();
+          const gainNode = audioCtx.createGain();
+
+          oscillator.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+
+          if (type === 'buy') {
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+          } else {
+            oscillator.frequency.value = 400;
+            oscillator.type = 'sawtooth';
+          }
+
+          gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+
+          oscillator.start(audioCtx.currentTime);
+          oscillator.stop(audioCtx.currentTime + 0.5);
+        } catch (e) {
+          console.log('Sound alert not supported');
+        }
+      }
+
+      function showAlert(type, priority, message) {
+        const container = document.getElementById('alert-container');
+        if (!container) return;
+
+        // Check if already shown in last 30 seconds
+        const recentKey = message.substring(0, 50);
+        if (alertHistory.includes(recentKey)) return;
+        alertHistory.push(recentKey);
+        if (alertHistory.length > 10) alertHistory.shift();
+
+        const icons = {
+          'BUY_ALERT': '📈',
+          'SELL_ALERT': '📉',
+          'EXTREME_BUY': '💚',
+          'EXTREME_SELL': '💔',
+          'HIGH': '🚨',
+          'WATCH': '👀',
+          'info': 'ℹ️'
+        };
+
+        const alertEl = document.createElement('div');
+        alertEl.className = `alert-notification ${type === 'HIGH' ? 'high' : type.toLowerCase().replace('_alert', '')}`;
+        alertEl.innerHTML = `
+          <div class="alert-icon">${icons[type] || '🔔'}</div>
+          <div class="alert-content">
+            <div class="alert-title">${type.replace('_', ' ')}</div>
+            <div class="alert-message">${message}</div>
+          </div>
+          <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+        `;
+
+        container.appendChild(alertEl);
+
+        // Play sound
+        if (priority === 'HIGH' || priority === 'MEDIUM') {
+          playAlertSound(type.includes('BUY') || type.includes('EXTREME_BUY') ? 'buy' : 'sell');
+        }
+
+        // Auto remove after 10 seconds
+        setTimeout(() => {
+          if (alertEl.parentElement) {
+            alertEl.style.animation = 'slideIn 0.3s ease reverse';
+            setTimeout(() => alertEl.remove(), 300);
+          }
+        }, 10000);
+      }
+
+      function processAlertsForStock(stock, signals) {
+        if (!signals) return;
+
+        // Show overall signal alert
+        if (signals.alerts && signals.alerts.length > 0) {
+          signals.alerts.forEach(alert => {
+            showAlert(alert.type, alert.priority, `[${stock.ticker}] ${alert.message}`);
+          });
+        }
+      }
+    </script>
 
 <script>
 /**
