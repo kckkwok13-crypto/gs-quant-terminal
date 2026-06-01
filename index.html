@@ -301,6 +301,137 @@
     .funda-label { font-size: 0.75rem; color: var(--text-secondary); }
     .funda-value { font-size: 1rem; font-weight: 600; margin-top: 4px; }
 
+    /* Company Info Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal-content { transform: scale(1); }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-header h2 { color: var(--accent-cyan); font-size: 1.5rem; }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--accent-red); }
+    .company-section { margin-bottom: 20px; }
+    .company-section h3 {
+      color: var(--accent-gold);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .company-section p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .company-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .company-tag {
+      padding: 4px 12px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .company-tag.highlight { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+    /* Sector Flow Section */
+    .sector-flow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+    .sector-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .sector-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sector-rank-list { max-height: 250px; overflow-y: auto; }
+    .sector-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sector-rank-item:last-child { border-bottom: none; }
+    .sector-rank-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .sector-rank-num.top { background: var(--accent-green); color: #000; }
+    .sector-rank-num.mid { background: var(--accent-gold); color: #000; }
+    .sector-rank-num.low { background: var(--accent-red); color: #fff; }
+    .sector-rank-info { flex: 1; }
+    .sector-rank-name { font-size: 0.9rem; font-weight: 600; }
+    .sector-rank-tickers { font-size: 0.75rem; color: var(--text-secondary); }
+    .sector-rank-flow { font-size: 1rem; font-weight: bold; }
+    .sector-rank-flow.in { color: var(--accent-green); }
+    .sector-rank-flow.out { color: var(--accent-red); }
+    .sector-flow-bar {
+      height: 4px;
+      background: var(--bg-dark);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .sector-flow-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s;
+    }
+    .sector-flow-fill.positive { background: var(--accent-green); }
+    .sector-flow-fill.negative { background: var(--accent-red); }
+
     /* Responsive */
     @media (max-width: 1200px) {
       .main-layout { grid-template-columns: 1fr; }
@@ -364,10 +495,23 @@
       </div>
       <div class="market-card bull" id="sector-flow">
         <div class="market-card-title">🟢 資金流入板塊</div>
-        <div class="market-badges">
+        <div class="market-badges" id="sector-flow-badges">
           <span class="badge green">🇺🇸 科技巨頭 +0.25</span>
           <span class="badge green">🇺🇸 半導體 +0.18</span>
         </div>
+        <div id="sector-flow-summary"></div>
+      </div>
+    </div>
+
+    <!-- Sector Flow Section -->
+    <div id="sector-flow-section" class="sector-flow-grid" style="display: none;">
+      <div class="sector-card">
+        <div class="sector-card-title">🟢 資金流入板塊排名</div>
+        <div class="sector-rank-list" id="sector-in-flow"></div>
+      </div>
+      <div class="sector-card">
+        <div class="sector-card-title">🔴 資金流出板塊排名</div>
+        <div class="sector-rank-list" id="sector-out-flow"></div>
       </div>
     </div>
 
@@ -540,6 +684,17 @@
           <div class="back-btn" onclick="showView('scan')">← 返回掃描結果</div>
           <div id="detail-content"></div>
         </div>
+
+        <!-- Company Info Modal -->
+        <div class="modal-overlay" id="company-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="modal-company-name">公司概覽</h2>
+              <button class="modal-close" onclick="closeCompanyModal()">&times;</button>
+            </div>
+            <div id="modal-company-content"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -591,6 +746,122 @@
       '9988.HK': { name: '阿里巴巴', base: 82.50, sector: '電商', cap: 1550 },
       '9618.HK': { name: '京東', base: 28.50, sector: '電商', cap: 280 }
     };
+
+    // ============ COMPANY INFO DATABASE ============
+    const COMPANY_INFO = {
+      'NVDA': {
+        description: 'NVIDIA Corporation 是全球領先的 AI 晶片和 GPU 設計公司，其 H100/H200 系列資料中心 GPU 壟斷全球 AI 訓練市場超過 80% 份額。旗下 CUDA 運算平台是 AI 開發的標準生態系統，形成难以逾越的護城河。',
+        business: 'AI 加速器晶片、遊戲顯卡、汽車自動駕駛、專業視覺化、數據中心解決方案',
+        tags: ['AI 晶片', 'GPU 霸主', 'CUDA 生態', '資料中心', '自動駕駛', '機器學習']
+      },
+      'AAPL': {
+        description: 'Apple Inc. 是全球市值最高的消費電子公司，以 iPhone 為核心構建完整的硬體、軟體、服務生態系統。AirPods、Apple Watch、Mac、iPad 構成無縫銜接的蘋果生態圈，Apple Music/iCloud/Apple TV+ 服務收入持續增長。',
+        business: 'iPhone 智能手機、Mac 電腦、iPad 平板、Apple Watch 智能手錶、AirPods 耳機、軟體服務',
+        tags: ['消費電子', '生態系統', 'iPhone', '服務收入', '品牌溢價', 'AI 設備']
+      },
+      'MSFT': {
+        description: 'Microsoft Corporation 是全球最大的企業軟體公司，Azure 雲計算平台是第二大公有雲供應商。Copilot AI 助手整合至 Windows、Office 365、GitHub 全線產品，推動訂閱收入持續增長。',
+        business: 'Azure 雲服務、Office 365 企業軟體、LinkedIn 職業社交、Xbox 遊戲、Windows 作業系統',
+        tags: ['雲計算', 'AI Copilot', '企業軟體', 'SaaS', 'Azure', 'OpenAI 合作']
+      },
+      'GOOGL': {
+        description: 'Alphabet Inc. 是 Google 的母公司，掌控全球 92% 搜索引擎市場。Google Cloud 快速增長，YouTube 是最大視頻平台。Gemini AI 整合至所有產品線，TPU 晶片支撐内部 AI 訓練。',
+        business: 'Google 搜索引擎、YouTube 視頻、Google Cloud 雲計算、Android 手機系統、Waymo 自動駕駛',
+        tags: ['搜索引擎', '雲計算', 'AI Gemini', 'YouTube', '廣告業務', '自動駕駛']
+      },
+      'META': {
+        description: 'Meta Platforms 是全球最大社交媒體公司，Facebook/Instagram/WhatsApp/Threads 覆蓋 30 億+ 用戶。Ray-Ban Meta 智能眼鏡引領 AR 設備，Meta AI 助手全面整合至旗下應用。',
+        business: 'Facebook 社交網絡、Instagram 圖片分享、WhatsApp 即時通訊、Meta AI、元宇宙 VR/AR',
+        tags: ['社交媒體', 'AI 助手', '元宇宙', '數字廣告', 'VR/AR', 'Instagram']
+      },
+      'TSLA': {
+        description: 'Tesla Inc. 是全球電動汽車領導者，擁有從晶片設計（FSD 自動駕駛晶片）到整車製造的垂直整合能力。Megapack 儲能業務快速增長，Optimus 人形機器人項目瞄準萬億市場。',
+        business: '電動汽車製造、FSD 全自動駕駛、储能 Megapack、太陽能產品、人形機器人 Optimus',
+        tags: ['電動車', '自動駕駛', '新能源', '儲能', '機器人', ' Elon Musk']
+      },
+      'AMZN': {
+        description: 'Amazon.com 是全球最大電商和雲計算公司，AWS 佔據全球雲計算市場 32% 份額。Prime 會員服務建立強大用戶粘性，Alexa 語音助手和 Alexa Fund 構建智能家居生態。',
+        business: '電子商務零售、AWS 雲計算、Prime 會員服務、Kindle 電子書、Alexa 智能家居',
+        tags: ['電商', 'AWS 雲計算', 'Prime 會員', 'AI 助手', '物流網絡', '自動駕駛']
+      },
+      'SMCI': {
+        description: 'Super Micro Computer 是全球最大 AI 伺服器供應商，為 NVIDIA 特選合作夥伴 (NGC合作夥伴)，提供液冷伺服器解決方案。在 AI 訓練伺服器市場佔據重要地位。',
+        business: 'AI 伺服器、液冷伺服器、存儲系統、GPU 伺服器、資料中心解決方案',
+        tags: ['AI 伺服器', '液冷技術', 'NVIDIA 合作', '邊緣計算', '資料中心']
+      },
+      'AVGO': {
+        description: 'Broadcom Inc. 是全球最大半導體公司之一，通過收購 VMware 強化企業軟體業務。為 AI 資料中心提供高性能網絡晶片和客製化 ASIC，涵蓋網絡、無線、寬頻。',
+        business: '半導體晶片、網絡解決方案、企業軟體、存儲控制器、無線射頻',
+        tags: ['半導體', 'AI 網絡晶片', 'VMware', 'ASIC 客製化', '企業軟體']
+      },
+      'AMD': {
+        description: 'Advanced Micro Devices 是全球第二大 CPU/GPU 廠商，Ryzen 處理器在 PC 市場持續侵蝕 Intel 份額，EPYC 伺服器 CPU 快速增長，Instinct GPU 挑戰 NVIDIA AI 市場。',
+        business: 'CPU 處理器、GPU 顯示卡、資料中心 CPU、嵌入式處理器、FPGA',
+        tags: ['CPU/GPU', 'Ryzen', 'EPYC 伺服器', 'AI GPU', '數據中心']
+      },
+      'TSM': {
+        description: '台灣積體電路製造 (TSMC) 是全球最大晶圓代工廠，佔據先進製程 (3nm/5nm) 100% 市場份額，為 Apple/NVIDIA/AMD/Qualcomm 代工最先進晶片，是全球半導體供應鏈的核心。',
+        business: '晶圓代工、先進製程、先進封裝、CoWoS、SoIC',
+        tags: ['晶圓代工', '先進製程', '3nm/5nm', 'CoWoS 先進封裝', '全球供應鏈']
+      },
+      'QCOM': {
+        description: 'Qualcomm Inc. 是全球最大移動晶片設計公司，Snapdragon 系列主宰 Android 高端手機。汽车晶片和物聯網晶片業務快速增長，AI Engine 整合至全線產品。',
+        business: '移動晶片、汽車晶片、物聯網晶片、無線射頻、專利授權',
+        tags: ['行動晶片', 'Snapdragon', '5G', '汽車晶片', '物聯網', 'AI Engine']
+      },
+      'MU': {
+        description: 'Micron Technology 是全球第三大記憶體晶片廠商，DRAM 和 NAND Flash 用於資料中心和消費電子。HBM 記憶體供不應求，是 AI 訓練伺服器關鍵元件。',
+        business: 'DRAM 記憶體、NAND Flash、固態硬碟、HBM 高頻寬記憶體、LPDDR',
+        tags: ['記憶體', 'DRAM', 'HBM', 'AI 記憶體', '資料中心', '固態硬碟']
+      },
+      'INTC': {
+        description: 'Intel Corporation 是全球最大 CPU 廠商，正在轉型 IDM 2.0 策略，重返代工業務。Gaudi AI 加速器追趕 NVIDIA，Mobileye 自動駕駛公司分拆上市。',
+        business: 'CPU 處理器、資料中心解決方案、Mobileye 自動駕駛、晶圓代工、FPGA',
+        tags: ['CPU', '資料中心', '自動駕駛 Mobileye', '代工業務', 'Gaudi AI']
+      },
+      'ARM': {
+        description: 'Arm Holdings 是全球最大 IP 授權公司，幾乎所有手機晶片 (Apple/NVIDIA/Qualcomm) 均基於 ARM 架構。2023 年 IPO，進軍資料中心 CPU 市場挑戰 Intel/AMD。',
+        business: '晶片 IP 授權、ARM 架構處理器、Neoverse 資料中心、汽車 IP、物聯網',
+        tags: ['晶片架構', 'IP 授權', 'ARM 生態', '資料中心 CPU', '移動處理器']
+      },
+      'ASML': {
+        description: 'ASML Holding 是全球唯一 EUV 光刻機製造商，垄断 7nm 以下先進製程。High-NA EUV 是 2nm 及以下製程必備設備，是全球半導體供應鏈最關鍵設備。',
+        business: 'EUV 光刻機、DUV 深紫外光刻機、先進封裝設備、量測設備',
+        tags: ['光刻機', 'EUV', '先進製程', '半導體設備', '7nm 以下']
+      },
+      'JPM': {
+        description: 'JPMorgan Chase 是全球最大銀行，資產管理規模達 3.3 兆美元。AI 助手初創公司合作，Coinbase 加密貨幣托管服務，TuTM 技術支出創歷史新高。',
+        business: '投資銀行、商業銀行、資產管理、信用卡、交易業務',
+        tags: ['銀行', '資產管理', '金融科技', '加密貨幣', 'AI 金融']
+      },
+      'V': {
+        description: 'Visa Inc. 是全球最大支付網絡，處理全球 40%+ 支付交易。Visa Direct 實時匯款、Tap to Mobile 發展迅速，與金融科技公司廣泛合作。',
+        business: '支付網絡、信用卡業務、借記卡、Visa Direct 匯款、跨境支付',
+        tags: ['支付網絡', '信用卡', '跨境支付', '金融科技', '數字支付']
+      },
+      'MSTR': {
+        description: 'MicroStrategy Inc. 是全球最大比特幣上市公司，持倉超過 193,000 BTC，是純比特幣國庫策略公司。CEO Michael Saylor 是比特幣最大倡導者。',
+        business: '企業分析軟體、比特幣投資與倉位、MSTR 國庫策略、比特幣杠桿',
+        tags: ['比特幣', '加密貨幣', 'MicroStrategy', '比特幣國庫', '數字黃金']
+      },
+      'COIN': {
+        description: 'Coinbase Global 是全球最大加密貨幣交易所，美國合規交易所，受監管機構 SEC/CFTC 監督。機構投資者加密託管服務快速增長。',
+        business: '加密貨幣交易所、機構托管、Wallet 錢包、Base L2 網絡、Web3',
+        tags: ['加密交易所', '合規監管', '機構托管', 'Coinbase Prime', 'Base L2']
+      }
+    };
+
+    // ============ SECTOR FUND FLOW DATA ============
+    const SECTOR_FLOW_DATA = [
+      { name: 'AI & 半導體', tickers: ['NVDA', 'AMD', 'TSM', 'ASML', 'AVGO', 'SMCI'], flow: 2.8, type: 'in', description: 'AI 晶片需求爆發，資金持續流入' },
+      { name: '科技巨頭', tickers: ['AAPL', 'MSFT', 'GOOGL', 'META', 'AMZN'], flow: 1.9, type: 'in', description: '雲計算 + AI 服務增長强劲' },
+      { name: '新能源車', tickers: ['TSLA', 'RIVN', 'LCID', 'NIO'], flow: -0.5, type: 'out', description: '估值偏高，資金有所流出' },
+      { name: '金融支付', tickers: ['JPM', 'BAC', 'V', 'MA', 'PYPL'], flow: 0.8, type: 'in', description: '加息環境利好銀行利差' },
+      { name: '加密貨幣', tickers: ['MSTR', 'COIN', 'MARA', 'IBIT'], flow: 1.5, type: 'in', description: '比特幣 ETF 獲批，機構湧入' },
+      { name: 'SaaS 雲端', tickers: ['MNDY', 'DDOG', 'SNOW', 'NET', 'CRWD'], flow: 0.6, type: 'in', description: '企業數字化轉型剛需持續' },
+      { name: '醫療健康', tickers: ['LLY', 'UNH', 'JNJ', 'MRK'], flow: -0.2, type: 'out', description: '通脹影響醫保支付能力' },
+      { name: '中國科技', tickers: ['0700.HK', '9988.HK', '3690.HK', '9618.HK'], flow: -0.8, type: 'out', description: '地緣風險 + 消費放緩' }
+    ];
 
     // ============ GLOBAL STATE ============
     let stocksCache = {};
@@ -955,6 +1226,7 @@
             <div style="margin-top: 8px;">
               <span class="signal-badge ${stock.signalClass}">${stock.signal}</span>
               <span style="font-size: 0.85rem; color: ${stock.cmf > 0 ? 'var(--accent-green)' : 'var(--accent-red)'};">${stock.smart_money}</span>
+              <button class="btn-primary" style="width: auto; padding: 4px 12px; font-size: 0.75rem; margin-left: 8px;" onclick="event.stopPropagation(); showCompanyInfo('${stock.ticker}')">🏢 公司</button>
             </div>
             <div style="display: flex; gap: 8px; margin-top: 8px;">
               <span class="badge">${stock.bagger_label}</span>
@@ -1032,6 +1304,7 @@
             <div style="text-align: right;">
               <div style="font-size: 2rem; font-weight: bold;">$${stock.price.toFixed(2)}</div>
               <div class="stock-change ${changeClass}" style="font-size: 1.1rem;">${changeSign}${stock.change_pct.toFixed(2)}%</div>
+              <button class="btn-primary" style="margin-top: 12px; width: auto; padding: 8px 16px; font-size: 0.85rem;" onclick="showCompanyInfo('${stock.ticker}')">🏢 公司資訊</button>
             </div>
           </div>
         </div>
@@ -1894,6 +2167,145 @@
       `;
     }
 
+    // ============ COMPANY INFO MODAL ============
+    function showCompanyInfo(ticker) {
+      const info = COMPANY_INFO[ticker];
+      const stock = stocksCache[ticker] || { name: ticker, sector: '未知', price: 0, change_pct: 0 };
+
+      if (!info) {
+        // If no company info available, show basic info
+        document.getElementById('modal-company-name').textContent = ticker + ' - ' + stock.name;
+        document.getElementById('modal-company-content').innerHTML = `
+          <div class="company-section">
+            <h3>📋 基本概覽</h3>
+            <p>暫時沒有 ${ticker} 的公司資訊。我哋會喺未來更新更多詳細內容。</p>
+          </div>
+          <div class="company-tags">
+            <span class="company-tag">${stock.sector}</span>
+            <span class="company-tag">市值: ${stock.price > 0 ? '$' + stock.price.toFixed(2) : 'N/A'}</span>
+          </div>
+        `;
+      } else {
+        document.getElementById('modal-company-name').textContent = ticker + ' - ' + stock.name;
+        document.getElementById('modal-company-content').innerHTML = `
+          <div class="company-section">
+            <h3>🏢 公司簡介</h3>
+            <p>${info.description}</p>
+          </div>
+
+          <div class="company-section">
+            <h3>💼 主營業務</h3>
+            <p>${info.business}</p>
+          </div>
+
+          <div class="company-section">
+            <h3>🏷️ 關鍵標籤</h3>
+            <div class="company-tags">
+              ${info.tags.map(tag => `<span class="company-tag highlight">${tag}</span>`).join('')}
+            </div>
+          </div>
+
+          ${SECTOR_FLOW_DATA.find(s => s.tickers.includes(ticker)) ? `
+          <div class="company-section">
+            <h3>📊 板塊資金流向</h3>
+            ${(() => {
+              const sector = SECTOR_FLOW_DATA.find(s => s.tickers.includes(ticker));
+              return `
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                <span>${sector.name}</span>
+                <span class="${sector.type === 'in' ? 'sector-rank-flow in' : 'sector-rank-flow out'}">
+                  ${sector.type === 'in' ? '↑' : '↓'} ${Math.abs(sector.flow).toFixed(1)}B
+                </span>
+              </div>
+              <div class="sector-flow-bar">
+                <div class="sector-flow-fill ${sector.type === 'in' ? 'positive' : 'negative'}"
+                     style="width: ${Math.min(100, Math.abs(sector.flow) * 25)}%"></div>
+              </div>
+              <p style="margin-top: 8px; font-size: 0.85rem;">${sector.description}</p>
+              `;
+            })()}
+          </div>
+          ` : ''}
+        `;
+      }
+
+      document.getElementById('company-modal').classList.add('active');
+    }
+
+    function closeCompanyModal() {
+      document.getElementById('company-modal').classList.remove('active');
+    }
+
+    // Close modal on overlay click
+    document.getElementById('company-modal').onclick = function(e) {
+      if (e.target === this) {
+        closeCompanyModal();
+      }
+    };
+
+    // ============ SECTOR FLOW RENDERING ============
+    function renderSectorFlow() {
+      // Sort sectors by flow
+      const inFlow = SECTOR_FLOW_DATA.filter(s => s.type === 'in').sort((a, b) => b.flow - a.flow);
+      const outFlow = SECTOR_FLOW_DATA.filter(s => s.type === 'out').sort((a, b) => a.flow - b.flow);
+
+      // Render in-flow list
+      document.getElementById('sector-in-flow').innerHTML = inFlow.map((sector, i) => {
+        const rankClass = i === 0 ? 'top' : i === 1 ? 'mid' : 'low';
+        return `
+          <div class="sector-rank-item" onclick="showSectorStocks('${sector.name}')">
+            <div class="sector-rank-num ${rankClass}">${i + 1}</div>
+            <div class="sector-rank-info">
+              <div class="sector-rank-name">${sector.name}</div>
+              <div class="sector-rank-tickers">${sector.tickers.slice(0, 3).join(', ')}...</div>
+            </div>
+            <div class="sector-rank-flow in">+${sector.flow.toFixed(1)}B</div>
+          </div>
+          <div class="sector-flow-bar">
+            <div class="sector-flow-fill positive" style="width: ${Math.min(100, sector.flow * 25)}%"></div>
+          </div>
+        `;
+      }).join('');
+
+      // Render out-flow list
+      document.getElementById('sector-out-flow').innerHTML = outFlow.map((sector, i) => {
+        const rankClass = i === 0 ? 'low' : 'mid';
+        return `
+          <div class="sector-rank-item" onclick="showSectorStocks('${sector.name}')">
+            <div class="sector-rank-num ${rankClass}">${i + 1}</div>
+            <div class="sector-rank-info">
+              <div class="sector-rank-name">${sector.name}</div>
+              <div class="sector-rank-tickers">${sector.tickers.slice(0, 3).join(', ')}...</div>
+            </div>
+            <div class="sector-rank-flow out">-${Math.abs(sector.flow).toFixed(1)}B</div>
+          </div>
+          <div class="sector-flow-bar">
+            <div class="sector-flow-fill negative" style="width: ${Math.min(100, Math.abs(sector.flow) * 25)}%"></div>
+          </div>
+        `;
+      }).join('');
+
+      // Update main market card badges
+      const topIn = inFlow[0];
+      const topOut = outFlow[0];
+      document.getElementById('sector-flow-badges').innerHTML = `
+        <span class="badge green">${topIn.name} +${topIn.flow.toFixed(1)}B</span>
+        <span class="badge red">${topOut.name} ${topOut.flow.toFixed(1)}B</span>
+      `;
+    }
+
+    function showSectorStocks(sectorName) {
+      const sector = SECTOR_FLOW_DATA.find(s => s.name === sectorName);
+      if (sector) {
+        // Fill custom tickers and trigger scan
+        document.getElementById('scan-mode').value = 'custom';
+        document.getElementById('preset-select').style.display = 'none';
+        document.getElementById('custom-input').style.display = 'block';
+        document.getElementById('custom-tickers').value = sector.tickers.join(', ');
+        document.getElementById('scan-btn').click();
+      }
+    }
+
     // ============ EVENT HANDLERS ============
     document.getElementById('scan-btn').onclick = async function() {
       const mode = document.getElementById('scan-mode').value;
@@ -1932,6 +2344,9 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    // ============ INITIALIZE SECTOR FLOW ============
+    renderSectorFlow();
 
     // ============ CHART TIMEFRAME BUTTONS ============
     let currentTimeframe = '1D';
